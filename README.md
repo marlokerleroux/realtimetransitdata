@@ -32,9 +32,9 @@ sur une matrice lumineuse, à la façon des écrans digitaux postés à certains
 Pour mener à bien notre projet, nous avons utilisé les technologies et équipements suivants :
 
 * [Python 3](https://www.python.org) - Communication API et traitement des données
-* [Raspberry Pi 3 Model B+](https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/)
-* [Adafruit RGB Matrix HAT + RTC for Raspberry Pi](https://www.adafruit.com/product/2345)
-* [64x32 RGB LED Matrix - 6mm pitch](https://www.adafruit.com/product/2276)
+* [Raspberry Pi 3 Model B+](https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/) - Support du projet
+* [Adafruit RGB Matrix HAT + RTC for Raspberry Pi](https://www.adafruit.com/product/2345) - Interface pour la commande de la matrice LED
+* [64x32 RGB LED Matrix - 6mm pitch](https://www.adafruit.com/product/2276) - Afficheur LED
 
 <!-- GETTING STARTED -->
 ## Pour débuter
