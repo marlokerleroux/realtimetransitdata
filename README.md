@@ -8,11 +8,24 @@ Conception d'un afficheur LED permettant la visualisation en temps réel des don
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://web.isen-ouest.fr/gitlab/mkerl222/projet-python/-/graphs/master/charts/contributors
+[photo-exemple]: https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Brighton_Old_Steine_bus_stop_stand_T_real_time_information_display_in_October_2013.jpeg/320px-Brighton_Old_Steine_bus_stop_stand_T_real_time_information_display_in_October_2013.jpeg
 
 <!-- ABOUT THE PROJECT -->
 ## À propos du projet
 
-Description du projet à compléter
+[![Brighton Old Steine bus stop stand][photo-exemple]](https://commons.wikimedia.org/wiki/File:Brighton_Old_Steine_bus_stop_stand_T_real_time_information_display_in_October_2013.jpeg)
+
+Dans le cadre de leur démarche d'ouverture des données, de plus en plus de collectivités locales mettent à la
+disposition du public des informations et des jeux de données liés à leurs périmètres de compétences. Une
+concrétisation fréquente de cette démarche passe par la mise en place d'API (interfaces de programmation
+applicatives) interrogeables par le grand public.
+
+Dans ce projet, il est demandé de s'intéresser aux données temps réel générées par les sociétés en charge
+des transports en commun pour les ensembles urbains dans lesquels les sites d'Yncréa Ouest sont implantés (à
+savoir : Brest, Caen, Nantes et Rennes). Le but du projet est de créer une solution permettant de récupérer des
+données, de les traiter, puis de procéder à une phase d'affichage. Un exemple d'application possible consiste à
+collecter les informations des prochains départs à un arrêt, de traiter ces données puis de proposer un affichage
+sur une matrice lumineuse, à la façon des écrans digitaux postés à certains arrêts.
 
 ### Technologies et matériels utilisés
 
