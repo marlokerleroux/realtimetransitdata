@@ -2,7 +2,7 @@
 
 [![Contributors][contributors-shield]][contributors-url]
 
-Conception d'un afficheur LED permettant la visualisation en temps réel des données de réseaux de transports en commun.
+Conception d'un afficheur LED permettant la visualisation en temps réel des données de réseaux de transports en commun de 4 communes : Brest, Caen, Nantes, Rennes.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
