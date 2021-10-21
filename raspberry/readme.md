@@ -17,8 +17,13 @@ sudo apt-get upgrade
 sudo apt-get install -y python3
 curl https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/rgb-matrix.sh >rgb-matrix.sh
 sudo bash rgb-matrix.sh
+
+
+
 ```
+
 ## Service
+
 '/etc/systemd/system/projet.service'
 ```
 [Unit]
@@ -41,4 +46,7 @@ TimeoutStopSec=300
 
 [Install]
 WantedBy=multi-user.target
+```
+```
+$ systemctl daemon-reload
 ```
