@@ -1,7 +1,7 @@
 ############################################################
 # Project : Real-time public transport network data        #
-# File name : api_bus_v4.py                                #
-# Version : 4.0                                            #
+# File name : api_bus_v5.py                                #
+# Version : 5.0                                            #
 # Last release : 27/10/2021                                #
 # Author : Julien LOPES - CIPA 5 - ISEN Yncréa Ouest BREST #
 # Program that makes requests on the API of 4 cities to    #
