@@ -1,5 +1,7 @@
 # Ecran
 
+# Timestamp = Heure UTC
+
 ## Libray
 ```
 $ curl https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/rgb-matrix.sh >rgb-matrix.sh
@@ -25,6 +27,12 @@ Modification du fichier 'samplebase.py' donné par la librairie
 ```
 
 ## Exemple
-```py
 
+```py
+dataSimu=[
+{'ligne': '05', 'terminus': 'Port de Commerce', 'temps': '1635365073.0'},
+{'ligne': '05', 'terminus': 'Provence', 'temps': '1635367073.0'},
+{'ligne': '01', 'terminus': 'Gare', 'temps': '1635367073.0'},
+{'ligne': '01', 'terminus': 'Hôpital Cavale', 'temps': '1635367073.0'}
+]
 ```

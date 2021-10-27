@@ -28,6 +28,10 @@ sudo bash rgb-matrix.sh
 │            └── projet.service
 ├── opt
 │   └── projet
+│       ├── Fonts
+│       │   ├── 5x8.bdf
+│       │   ├── 5x8.bdf
+│       │   └── 5x8.bdf
 │       ├── main.py
 │       ├── samplebase.py
 │       └── moduleEcran.py

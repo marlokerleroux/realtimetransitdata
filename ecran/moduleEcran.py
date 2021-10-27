@@ -33,6 +33,7 @@ class RunText(SampleBase):
         super(RunText, self).__init__(*args, **kwargs)
         #self.parser.add_argument("-t", "--text", help="The text to scroll on the RGB LED panel", default="")
         self.ligne = []
+
     def updateScr(self, scr_current):
         self.ligne.clear()
         for ligne_current in scr_current.ligne:
@@ -53,6 +54,7 @@ class RunText(SampleBase):
                 len = graphics.DrawText(offscreen_canvas, font, ligne_current.y, ligne_current.x , ligne_current.color, ligne_current.texte)
                 # if lig_current.defil == 1:
                 #     len = graphics.DrawText(offscreen_canvas, font, ligne_current.y, ligne_current.x+offset , ligne_current.color, ligne_current.texte)
+                void drawPixel(uint16_t x, uint16_t y, uint16_t color);
 
             offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
@@ -73,39 +75,50 @@ class Affichage (threading.Thread):
             self.run_text.print_help()
 
 
-
 class ModuleEcran (threading.Thread):
     "Module de gestion de l'écran"
     def __init__(self, debug):
         self.debug=debug
-        self.scr = []
         self.mngAffichage = Affichage()
         self.mngAffichage.start()
-        if debug == 1:
-            print("ModuleEcran : Start [mode:Debug]")
-            print(self.__doc__)
+
         color1=graphics.Color(255, 255, 255)
         color2=graphics.Color(255, 255, 0)
         color3=graphics.Color(255, 255, 0)
         #Création de l'écran
-        E0 = Ecran("01",1,True)
-        E0.addLigne(Ligne("Ville Arret",7,0,0,color1))#Titre
-        E0.addLigne(Ligne("XX",14,0,0,color2))#ligne
-        E0.addLigne(Ligne("Direction",14,14,0,color2))#Destination
-        E0.addLigne(Ligne("5mn",14,50,0,color2))#Temps
-        E0.addLigne(Ligne("XX",21,0,0,color2))
-        E0.addLigne(Ligne("Direction",21,14,0,color2))
-        E0.addLigne(Ligne("5mn",21,50,0,color2))
-        E0.addLigne(Ligne("XX",29,0,0,color2))
-        E0.addLigne(Ligne("Direction",29,14,0,color2))
-        E0.addLigne(Ligne("5mn",29,50,0,color2))
-        self.scr.append(E0)
-        #Création de l'écran @ip pendant 10sec
-        E1 = Ecran("IP",10,False)
-        E1.addLigne(Ligne(getIp(),0,0,0,color2))
-        self.scr.append(E1)
+        self.scrbus = Ecran("01",1,True)
+        self.scrbus .addLigne(Ligne("Ville Arret",7,0,0,color1))#Titre
+        self.scrbus .addLigne(Ligne("XX",14,0,0,color2))#ligne
+        self.scrbus .addLigne(Ligne("Direction",14,12,0,color2))#Destination
+        self.scrbus .addLigne(Ligne("5mn",14,50,0,color2))#Temps
+        self.scrbus .addLigne(Ligne("XX",21,0,0,color2))
+        self.scrbus .addLigne(Ligne("Direction",21,12,0,color2))
+        self.scrbus .addLigne(Ligne("5mn",21,50,0,color2))
+        self.scrbus .addLigne(Ligne("XX",29,0,0,color2))
+        self.scrbus .addLigne(Ligne("Direction",29,12,0,color2))
+        self.scrbus .addLigne(Ligne("5mn",29,50,0,color2))
+
+        #Création de l'écran Bienvenu
+        self.scrWelcome = Ecran("IP",10,False)
+        self.scrWelcome.addLigne(Ligne("@IP : ",7,0,0,color2))
+        self.scrWelcome.addLigne(Ligne(getIp(),14,0,0,color2))
+        self.scrWelcome.addLigne(Ligne("v 0.5.2",21,0,0,color2))
+        self.scrWelcome.addLigne(Ligne("SVNFTg==",29,0,0,color2))
+
+        #Création de l'écran ERROR
+        self.scrError = Ecran("Error",10,False)
+        self.scrError.addLigne(Ligne("Error:",7,0,0,color2))
+        self.scrError.addLigne(Ligne("Inconnu",14,0,0,color2))
+
+        #Création de l'écran Attente Config
+        self.scrWait = Ecran("Error",10,False)
+        self.scrWait.addLigne(Ligne("Attente",7,0,0,color2))
+        self.scrWait.addLigne(Ligne("IP:",14,0,0,color2))
+        self.scrWait.addLigne(Ligne("$ ",21,0,0,color2))
+        self.scrWait.addLigne(Ligne("$ ",29,0,0,color2))
+
         #Affichage sur l'écran
-        self.mngAffichage.updateAff(E1)
+        self.mngAffichage.updateAff(self.scrWelcome)
         time.sleep(15)
         #Thread
         threading.Thread.__init__(self)
@@ -116,11 +129,9 @@ class ModuleEcran (threading.Thread):
         return s.getsockname()[0]
 
     def update(self, info):
+        self.dataAPI=info
         if self.debug == 1:
             print("ModuleEcran : Update :",info,"")
-        self.scr[0].ligne[1].texte=str(info)
-        # self.scr[1].ligne[0].texte="LOL"
-        # self.scr[1].actif=False
 
     def run(self):
         while 1:
@@ -136,18 +147,25 @@ class ModuleEcran (threading.Thread):
                     #         print("    ", scr_current.ligne[0].texte)
                     #         print("")
                     # print("updateModule")
-                    self.mngAffichage.updateAff(scr_current)
-                    time.sleep(scr_current.time)
+            self.mngAffichage.updateAff(self.scrbus)
+            print("refresh")
+            time.sleep(0.5)
+
 
 # Main function
 if __name__ == "__main__":
+    dataSimu=[
+{'ligne': '05', 'terminus': 'Port de Commerce', 'temps': '1635373166.0'},
+{'ligne': '05', 'terminus': 'Provence', 'temps': '1635373036.0'},
+{'ligne': '01', 'terminus': 'Gare', 'temps': '1635382396.0'},
+{'ligne': '01', 'terminus': 'Hôpital Cavale', 'temps': '1635371271.0'}
+]
+
     scr = ModuleEcran(1)
     scr.start()
-    idx = 0
-    print (getIp())
+    scr.conf("################")
     while 1:
-        idx=idx+1
-        # bus=api.req(arartbus)
-        scr.update(idx)
-        time.sleep(8.0)
+        time.sleep(2.0)
+        scr.update(dataSimu)
+        time.sleep(28.0)
     scr.stop()
