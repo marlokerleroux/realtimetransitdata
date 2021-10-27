@@ -1,37 +1,46 @@
-<form class="form-horizontal">
-  <fieldset>
-  
-  <legend>Horaires bus</legend>
-  
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="ville">Choix de la ville</label>
-    <div class="col-md-5">
-      <select id="ville" name="ville" class="form-control">
-        <option value="brest">Brest</option>
-        <option value="caen">Caen</option>
-        <option value="nantes">Nantes</option>
-        <option value="rennes">Rennes</option>
-      </select>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Projet Python</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body class="text-center">
+
+<div class="modal-dialog" role="document">
+  <div class="modal-content rounded-5 shadow">
+    <div class="modal-header p-5 pb-4 border-bottom-0">
+      <h2 class="fw-bold mb-0">Horaires bus</h2>
+    </div>
+
+    <div class="modal-body p-5 pt-0">
+      <form class="">
+        <div class="form-floating mb-3">
+          <select id="ville" name="ville" class="form-control">
+            <option value="brest">Brest</option>
+            <option value="caen">Caen</option>
+            <option value="nantes">Nantes</option>
+            <option value="rennes">Rennes</option>
+          </select>
+          <label for="floatingInput">Choix de la ville</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select id="arret" name="arret" class="form-control">
+            <option value="choix">Arrêt 1</option>
+          </select>
+        <label for="floatingPassword">Choix de l'arrêt</label>
+        </div>
+        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Enregistrer</button>
+        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-danger" type="submit">Annuler</button>
+      </form>
     </div>
   </div>
-  
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="arret">Choix de l'arrêt</label>
-    <div class="col-md-5">
-      <select id="arret" name="arret" class="form-control">
-        <option value="choix">Choix</option>
-      </select>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="valider"></label>
-    <div class="col-md-8">
-      <button id="valider" name="valider" class="btn btn-success">Valider</button>
-      <button id="annuler" name="annuler" class="btn btn-danger">Annuler</button>
-    </div>
-  </div>
-  
-  </fieldset>
-  </form>
-  
+</div>
+
+
+
+</body>
+</html>
