@@ -32,8 +32,8 @@
             <label>Choix de la ville</label>
           </div>
           <div id="container-arrets" class="form-floating mb-3"></div>
-          <button id="valider" class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Enregistrer</button>
-          <button id="effacer" class="w-100 mb-2 btn btn-lg rounded-4 btn-danger" type="reset">Effacer</button>
+          <button id="valider" class="col-5 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Enregistrer</button>
+          <button id="effacer" class="col-5 mb-2 btn btn-lg rounded-4 btn-danger" type="reset">Effacer</button>
         </form>
       </div>
     </div>
