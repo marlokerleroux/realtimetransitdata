@@ -1,7 +1,7 @@
 $.getJSON("data/data.json", function (data) {
 
     $('#ville').change(function () {
-        if ($('#ville').val() == "brest") {
+        if ($('#ville').val() == "Brest") {
             var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
             select.append($("<option disabled selected value> -- Aucun -- </option>"));
             $.each(data.brest, function (index, data) {
@@ -9,7 +9,7 @@ $.getJSON("data/data.json", function (data) {
             });
             $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
-        if ($('#ville').val() == "caen") {
+        if ($('#ville').val() == "Caen") {
             var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
             select.append($("<option disabled selected value> -- Aucun -- </option>"));
             $.each(data.caen, function (index, data) {
@@ -17,7 +17,7 @@ $.getJSON("data/data.json", function (data) {
             });
             $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
-        if ($('#ville').val() == "nantes") {
+        if ($('#ville').val() == "Nantes") {
             var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
             select.append($("<option disabled selected value> -- Aucun -- </option>"));
             $.each(data.nantes, function (index, data) {
@@ -25,7 +25,7 @@ $.getJSON("data/data.json", function (data) {
             });
             $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
-        if ($('#ville').val() == "rennes") {
+        if ($('#ville').val() == "Rennes") {
             var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
             var previous = null;
             select.append($("<option disabled selected value> -- Aucun -- </option>"));
@@ -53,4 +53,9 @@ $(document).ready(function () {
     });
 
     $('#valider').attr('disabled', 'disabled');
+});
+
+$.getJSON( "data/parameter.json", function(param) {
+    var val = $("<div></div>").text("Valeur actuelle : "+param.city+" - "+param.bus_stop);
+    $("#val-act").html(val);
 });

@@ -6,9 +6,9 @@
   <title>Projet Python</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/script.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
 </head>
 
 <body class="text-center">
@@ -19,14 +19,15 @@
       </div>
 
       <div class="modal-body p-5 pt-0">
+      <div id="val-act" class="alert alert-info" role="alert"></div>
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
           <div class="form-floating mb-3">
             <select id="ville" name="ville" class="form-control">
               <option disabled selected value> -- Aucune -- </option>
-              <option value="brest">Brest</option>
-              <option value="caen">Caen</option>
-              <option value="nantes">Nantes</option>
-              <option value="rennes">Rennes</option>
+              <option value="Brest">Brest</option>
+              <option value="Caen">Caen</option>
+              <option value="Nantes">Nantes</option>
+              <option value="Rennes">Rennes</option>
             </select>
             <label>Choix de la ville</label>
           </div>
