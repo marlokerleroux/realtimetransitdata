@@ -37,11 +37,20 @@ $.getJSON("data/data.json", function (data) {
             });
             $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
+        $('#arret').change(function() {
+            if (!$('#arret').val())
+              $('#valider').attr('disabled', 'disabled');
+            else
+              $('#valider').attr('disabled', false);
+        });
     });
 });
 
 $(document).ready(function () {
     $("#effacer").click(function () {
-        $("#container-arrets").empty();;
+        $("#container-arrets").empty();
+        $('#valider').attr('disabled', 'disabled');
     });
+
+    $('#valider').attr('disabled', 'disabled');
 });
