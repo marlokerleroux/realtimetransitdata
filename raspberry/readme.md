@@ -17,9 +17,20 @@ sudo apt-get upgrade
 sudo apt-get install -y python3
 curl https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/rgb-matrix.sh >rgb-matrix.sh
 sudo bash rgb-matrix.sh
+```
+## File
 
-
-
+```bash
+/
+├── etc
+│   └──  systemd
+│        └── system
+│            └── projet.service
+├── opt
+│   └── projet
+│       ├── main.py
+│       ├── samplebase.py
+│       └── moduleEcran.py
 ```
 
 ## Service
