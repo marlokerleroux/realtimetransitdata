@@ -211,4 +211,4 @@ def main(city, bus_stop):
 if __name__ == '__main__':
     city = get_parameters()[0]
     bus_stop = get_parameters()[1]
-    main(city, bus_stop).
+    main(city, bus_stop)
