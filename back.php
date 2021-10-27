@@ -8,7 +8,7 @@
 
    <?php
 
-      $file = fopen("parameter.json", "w");
+      $file = fopen("data/parameter.json", "w");
       $city = $_POST['ville'];
       $bus_stop = $_POST['arret'];
 

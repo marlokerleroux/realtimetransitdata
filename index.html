@@ -44,6 +44,7 @@
         if ($('#ville').val() == "rennes") {
           var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
           var previous = null;
+          select.append($("<option disabled selected value> -- Aucun -- </option>"));
           $.each(data.rennes, function (index, data) {
             if(previous != data.fields.nom){
               select.append($("<option></option>").attr("value", data.fields.nom).text(data.fields.nom));
@@ -63,7 +64,7 @@
       </div>
 
       <div class="modal-body p-5 pt-0">
-        <form class="">
+        <form action="back.php" method="POST">
           <div class="form-floating mb-3">
             <select id="ville" name="ville" class="form-control">
               <option disabled selected value> -- Aucune -- </option>
@@ -74,10 +75,9 @@
             </select>
             <label>Choix de la ville</label>
           </div>
-          <div id="container-arrets" class="form-floating mb-3">
-          </div>
+          <div id="container-arrets" class="form-floating mb-3"></div>
           <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Enregistrer</button>
-          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-danger" type="submit">Annuler</button>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-danger" type="reset">Effacer</button>
         </form>
       </div>
     </div>
