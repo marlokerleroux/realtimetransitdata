@@ -55,7 +55,7 @@ $(document).ready(function () {
     $('#valider').attr('disabled', 'disabled');
 });
 
-$.getJSON( "data/parameter.json", function(param) {
+$.getJSON( "data/parameters.json", function(param) {
     var val = $("<div></div>").text("Arrêt enregistré : "+param.city+" - "+param.bus_stop);
     $("#val-act").html(val);
 });
