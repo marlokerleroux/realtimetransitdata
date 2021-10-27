@@ -3,7 +3,7 @@
 # File name : api_bus_v5.py                                #
 # Version : 5.0                                            #
 # Last release : 27/10/2021                                #
-# Author : Julien LOPES - CIPA 5 - ISEN Yncréa Ouest BREST #
+# Author : Group B - CIPA 5 - ISEN Yncréa Ouest BREST      #
 # Program that makes requests on the API of 4 cities to    #
 # get bus stop schedule in real time defined by the user   #
 ############################################################
@@ -14,7 +14,7 @@
 
 import requests, json, urllib, time, pytz, datetime
 from time import sleep
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 
 def get_parameters():
@@ -209,7 +209,7 @@ def get_brest_data(stop_name):
             bus.append({
                 'ligne': routes_params[i]['route'],
                 'terminus': routes_params[i]['terminus'],
-                'temps': time.mktime(datetime.strptime(str(datetime.date.today()) + next_bus[k]['Arrival_time'], "%Y-%m-%d%H:%M:%S").timetuple()) + timezone_time_difference
+                'temps': str(time.mktime(datetime.strptime(str(date.today()) + next_bus[k]['Arrival_time'], "%Y-%m-%d%H:%M:%S").timetuple()) + timezone_time_difference)
             })
 
     bus = sorted(bus, key=lambda x: (x['temps']))
@@ -223,6 +223,7 @@ def main(city, bus_stop):
     print(string.center(30))
     print("\n Liste de tout les bus passant à l'arrêt : ", bus_stop, "\n")
     print("*" * 30)
+    # Currently Brest is treated separatly because his API do not work like the others
     if city == "BREST":
         data = get_brest_data(bus_stop)
     else:
