@@ -32,15 +32,23 @@
         }
         if ($('#ville').val() == "nantes") {
           var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
+          var previous = null;
           $.each(data.nantes, function (index, data) {
-            select.append($("<option></option>").attr("value", data.fields.stop_name).text(data.fields.stop_name));
+            if(previous != data.fields.stop_name){
+              select.append($("<option></option>").attr("value", data.fields.parent_station).text(data.fields.stop_name));
+            }
+            previous = data.fields.stop_name;
           });
           $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
         if ($('#ville').val() == "rennes") {
           var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
+          var previous = null;
           $.each(data.rennes, function (index, data) {
-            select.append($("<option></option>").attr("value", data.fields.nom).text(data.fields.nom));
+            if(previous != data.fields.nom){
+              select.append($("<option></option>").attr("value", data.fields.nom).text(data.fields.nom));
+            }
+            previous = data.fields.nom;
           });
           $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
