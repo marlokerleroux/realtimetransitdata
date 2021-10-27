@@ -18,6 +18,7 @@
       $('#ville').change(function () {
         if ($('#ville').val() == "brest") {
           var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
+          select.append($("<option disabled selected value> -- Aucun -- </option>"));
           $.each(data.brest, function (index, data) {
             select.append($("<option></option>").attr("value", data.Stop_name).text(data.Stop_name));
           });
@@ -25,6 +26,7 @@
         }
         if ($('#ville').val() == "caen") {
           var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
+          select.append($("<option disabled selected value> -- Aucun -- </option>"));
           $.each(data.caen, function (index, data) {
             select.append($("<option></option>").attr("value", data.fields.stop_name).text(data.fields.stop_name));
           });
@@ -33,6 +35,7 @@
         if ($('#ville').val() == "nantes") {
           var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
           var previous = null;
+          select.append($("<option disabled selected value> -- Aucun -- </option>"));
           $.each(data.nantes, function (index, data) {
             if(previous != data.fields.stop_name){
               select.append($("<option></option>").attr("value", data.fields.parent_station).text(data.fields.stop_name));
