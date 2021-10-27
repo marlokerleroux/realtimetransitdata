@@ -36,7 +36,7 @@
           var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
           select.append($("<option disabled selected value> -- Aucun -- </option>"));
           $.each(data.nantes, function (index, data) {
-              select.append($("<option></option>").attr("value", data.fields.stop_id).text(data.fields.stop_name));
+            select.append($("<option></option>").attr("value", data.fields.stop_id).text(data.fields.stop_name));
           });
           $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
@@ -45,7 +45,7 @@
           var previous = null;
           select.append($("<option disabled selected value> -- Aucun -- </option>"));
           $.each(data.rennes, function (index, data) {
-            if(previous != data.fields.nom){
+            if (previous != data.fields.nom) {
               select.append($("<option></option>").attr("value", data.fields.nom).text(data.fields.nom));
             }
             previous = data.fields.nom;
@@ -75,12 +75,17 @@
             <label>Choix de la ville</label>
           </div>
           <div id="container-arrets" class="form-floating mb-3"></div>
-          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Enregistrer</button>
-          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-danger" type="reset">Effacer</button>
+          <button id="valider" class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Enregistrer</button>
+          <button id="effacer" class="w-100 mb-2 btn btn-lg rounded-4 btn-danger" type="reset">Effacer</button>
         </form>
       </div>
     </div>
   </div>
+  <script>
+    $("#effacer").click(function () {
+      $( "#container-arrets" ).empty();;
+    });
+  </script>
 
 
 
