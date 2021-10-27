@@ -111,7 +111,7 @@ def get_data(city, data):
                 "temps": time
             }
             bus_list.append(bus_dictionary)  # add each dictionary in the general list
-            bus_list = sorted(bus_list, key=lambda j: int(j["temps"]))  # sort by chronological order
+        bus_list = sorted(bus_list, key=lambda j: float(j["temps"]))  # sort by chronological order
     return bus_list
 
 
@@ -161,13 +161,13 @@ def get_time(city, line, destination, departure, date):
     bus_departure_hour = bus_departure_fromtimestamp.hour
     bus_departure_minute = bus_departure_fromtimestamp.minute
     if bus_time_left_timestamp >= 0.0:  # prevent calcul error of negative values
-        bus_time_left = datetime.fromtimestamp(bus_time_left_timestamp).minute  # calculate time minute in <datetime>
-        if bus_time_left >= 0:  # double prevention : only if time left is superior or equal than 0 minutes
+        bus_time_left = str(int(bus_time_left_timestamp//60)) + " min" if bus_time_left_timestamp//60<60 else ">1h"  # calculate time minute in <datetime>
+        if bus_time_left_timestamp//60 >= 0:  # double prevention : only if time left is superior or equal than 0 minutes
             print("")
             print("Ligne : ", line)
             print("Destination : ", destination)
             print("Départ à : " + str(bus_departure_hour).zfill(2) + "h" + str(bus_departure_minute).zfill(2))
-            print("Temps restant : ", str(bus_time_left) + " min")
+            print("Temps restant : ", bus_time_left)
             print("")
             print("*"*30)
     # *** END : Console print to compare validity of data with reality ***
