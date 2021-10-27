@@ -19,7 +19,7 @@
       </div>
 
       <div class="modal-body p-5 pt-0">
-        <form action="back.php" method="POST">
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
           <div class="form-floating mb-3">
             <select id="ville" name="ville" class="form-control">
               <option disabled selected value> -- Aucune -- </option>
@@ -38,5 +38,23 @@
     </div>
   </div>
 </body>
+
+<?php
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $file = fopen("data/parameter.json", "w");
+      $city = $_POST['ville'];
+      $bus_stop = $_POST['arret'];
+
+      $string_to_put_into = "{\n
+            \"city\":\"" . $city ."\",\n
+            \"bus_stop\":\"". $bus_stop."\"\n
+         }";
+      $fwrite = fwrite($file, $string_to_put_into);
+
+
+      fclose($file);
+  } 
+   ?>
 
 </html>
