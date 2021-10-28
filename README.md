@@ -76,12 +76,12 @@ ETAPES NECESSAIRES POUR EXECUTER LE PROJET
    git clone https://github.com/your_username_/Project-Name.git
    ```
 3. Installer les librairies python nécéssaires 
-  ```sh
-  pip install urllib
-  ```
-  ```sh
-  pip install pytz
-  ```
+   ```sh
+   pip install urllib
+   ```
+   ```sh
+   pip install pytz
+   ```
 4. Ajouter suite des instructions .......
    ```js
    const API_KEY = 'ENTER YOUR API';
