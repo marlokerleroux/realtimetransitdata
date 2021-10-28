@@ -217,7 +217,7 @@ def get_brest_data(stop_name):
     return bus
 
 
-def main(city, bus_stop):
+def process(city, bus_stop):
     city, bus_stop = city, bus_stop
     print("")
     string = "--- Réseau de bus de la ville de " + city + " ---"
@@ -237,18 +237,18 @@ def main(city, bus_stop):
 
 
 if __name__ == '__main__':
-    city = get_parameters()[0]
-    bus_stop = get_parameters()[1]
     scr = ModuleEcran(1)
     scr.start()
     scr.conf("################")
     while 1:
         wait_time = 60.0
+        city = get_parameters()[0]
+        bus_stop = get_parameters()[1]
         time.sleep(2.0)
         try:
-            data = main(city, bus_stop)
+            data = process(city, bus_stop)
             if len(data)>0:
-                scr.update(main(city, bus_stop))
+                scr.update(data)
             else:
                 wait_time = 8.0
         except:
