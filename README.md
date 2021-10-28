@@ -55,13 +55,17 @@ CECI EST UN EXEMPLE A MODIFIER !
 
 CECI EST UN EXEMPLE A MODIFIER !
 
+[urllib](https://docs.python.org/fr/3/library/urllib.html) est un paquet qui collecte plusieurs modules travaillant avec les URLs.
 * urllib
   ```sh
   pip install urllib
   ```
+[pytz](https://pypi.org/project/pytz/) est un paquet qui permet des calculs de fuseau horaire précis et multiplateformes.
 * pytz
   ```sh
   pip install pytz
+  ```
+  
 ### Installation
 
 ETAPES NECESSAIRES POUR EXECUTER LE PROJET
@@ -74,6 +78,8 @@ ETAPES NECESSAIRES POUR EXECUTER LE PROJET
 3. Installer les librairies python nécéssaires 
   ```sh
   pip install urllib
+  ```
+  ```sh
   pip install pytz
   ```
 4. Ajouter suite des instructions .......
