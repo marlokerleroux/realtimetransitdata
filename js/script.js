@@ -13,7 +13,7 @@ $.getJSON("data/data.json", function (data) {
             var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
             select.append($("<option disabled selected value> -- Aucun -- </option>"));
             $.each(data.caen, function (index, data) {
-                select.append($("<option></option>").attr("value", data.fields.stop_name).text(data.fields.stop_name));
+                select.append($("<option></option>").attr("value", data.stop_name).text(data.stop_name));
             });
             $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
@@ -21,7 +21,7 @@ $.getJSON("data/data.json", function (data) {
             var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
             select.append($("<option disabled selected value> -- Aucun -- </option>"));
             $.each(data.nantes, function (index, data) {
-                select.append($("<option></option>").attr("value", data.fields.stop_id).text(data.fields.stop_name));
+                select.append($("<option></option>").attr("value", data.stop_name).text(data.stop_name));
             });
             $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
