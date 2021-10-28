@@ -77,3 +77,4 @@ ETAPES NECESSAIRES POUR EXECUTER LE PROJET
    ```sh
    pip install pytz
    ```
+3. Suivre les instructions sur RASPBERRY.md et ECRAN.md
