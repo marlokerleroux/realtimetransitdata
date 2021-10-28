@@ -56,9 +56,9 @@ CECI EST UN EXEMPLE A MODIFIER !
 CECI EST UN EXEMPLE A MODIFIER !
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+* urllib
   ```sh
-  npm install npm@latest -g
+  pip install urllib
   ```
 
 ### Installation
