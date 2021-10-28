@@ -60,7 +60,9 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   pip install urllib
   ```
-
+* pytz
+  ```sh
+  pip install pytz
 ### Installation
 
 CECI EST UN EXEMPLE A MODIFIER !
