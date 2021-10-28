@@ -243,11 +243,11 @@ if __name__ == '__main__':
         wait_time = 60.0
         city = get_parameters()[0]
         bus_stop = get_parameters()[1]
-        scr.conf(city + " " + bus_stop)
         time.sleep(2.0)
         try:
             data = process(city, bus_stop)
             if len(data)>0:
+                scr.conf(city + " " + bus_stop)
                 scr.update(data)
             else:
                 wait_time = 8.0
