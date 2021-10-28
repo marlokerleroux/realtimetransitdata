@@ -49,11 +49,7 @@ Les liens suivants renvoient vers des pages de description des API :
 <!-- GETTING STARTED -->
 ## Pour débuter
 
-CECI EST UN EXEMPLE A MODIFIER !
-
 ### Prérequis
-
-CECI EST UN EXEMPLE A MODIFIER !
 
 [urllib](https://docs.python.org/fr/3/library/urllib.html) est un paquet qui collecte plusieurs modules travaillant avec les URLs.
 * urllib
@@ -70,27 +66,14 @@ CECI EST UN EXEMPLE A MODIFIER !
 
 ETAPES NECESSAIRES POUR EXECUTER LE PROJET
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Cloner le projet à l'aide de l'adresse suivante :
+1. Cloner le projet à l'aide de l'adresse suivante :
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
-3. Installer les librairies python nécéssaires 
+2. Installer les librairies python nécéssaires 
    ```sh
    pip install urllib
    ```
    ```sh
    pip install pytz
    ```
-4. Ajouter suite des instructions .......
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-<!-- USAGE EXAMPLES -->
-## Usage
-
-CECI EST UN EXEMPLE A MODIFIER !
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
