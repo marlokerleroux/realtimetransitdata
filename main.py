@@ -243,7 +243,7 @@ if __name__ == '__main__':
         wait_time = 60.0
         city = get_parameters()[0]
         bus_stop = get_parameters()[1]
-        scr.conf(city)
+        scr.conf(city+" "+bus_stop)
         time.sleep(2.0)
         try:
             data = process(city, bus_stop)
