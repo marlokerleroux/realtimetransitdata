@@ -240,7 +240,7 @@ if __name__ == '__main__':
     scr = ModuleEcran(1)
     scr.start()
     while 1:
-        wait_time = 60.0
+        wait_time = 30.0
         city = get_parameters()[0]
         bus_stop = get_parameters()[1]
         time.sleep(2.0)
