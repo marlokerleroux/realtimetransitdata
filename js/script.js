@@ -30,10 +30,10 @@ $.getJSON("data/data.json", function (data) {
             var previous = null;
             select.append($("<option disabled selected value> -- Aucun -- </option>"));
             $.each(data.rennes, function (index, data) {
-                if (previous != data.fields.nom) {
-                    select.append($("<option></option>").attr("value", data.fields.nom).text(data.fields.nom));
+                if (previous != data.nom) {
+                    select.append($("<option></option>").attr("value", data.nom).text(data.nom));
                 }
-                previous = data.fields.nom;
+                previous = data.nom;
             });
             $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
