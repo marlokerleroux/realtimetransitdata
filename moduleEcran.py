@@ -16,6 +16,9 @@ class Ligne:
         self.y=y #col
         self.align=align
         self.defil=0
+        self.defilOffset=0# defilement mode 1
+        self.strCurrent=""
+        self.strAff=""
         self.texte=texte
         self.font=graphics.Font()
         self.font.LoadFont("/opt/projet/fonts/5x8.bdf")
@@ -48,6 +51,12 @@ class RunText(SampleBase):
             self.ligne.append(ligne_current)
             # print(ligne_current.texte,ligne_current.x,ligne_current.y)
 
+    def defilement(self,strAff):
+        nouvelle_chaine=strAff
+        # nouvelle_chaine=nouvelle_chaine[-1]+nouvelle_chaine[0:-1]
+        nouvelle_chaine=nouvelle_chaine[1:(len(strAff))]+nouvelle_chaine[0]
+        return nouvelle_chaine
+
 
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
@@ -57,13 +66,28 @@ class RunText(SampleBase):
         while True:
             offscreen_canvas.Clear()
             for ligne_current in self.ligne:
-                if lig_current.defil == 0:
+                if ligne_current.defil == 0:
+                    size = graphics.DrawText(offscreen_canvas, ligne_current.font, ligne_current.y, ligne_current.x , ligne_current.color, ligne_current.texte)
+                elif ligne_current.defil == 1:
                     texteScr=ligne_current.texte
-                    len = graphics.DrawText(offscreen_canvas, ligne_current.font, ligne_current.y, ligne_current.x , ligne_current.color, texteScr)
-                else:
-                    
-                #     len = graphics.DrawText(offscreen_canvas, font, ligne_current.y, ligne_current.x+offset , ligne_current.color, ligne_current.texte)
+                    ligne_current.defilOffset-=2
+                    if (len(ligne_current.texte)*5) > (12*6):
+                        texteScr+="   "
+                    if ligne_current.defilOffset < ((len(texteScr)*5)*-1):
+                        ligne_current.defilOffset=0
+                    offset=(12*6)+ligne_current.defilOffset
+                    if offset > 0:
+                        offset=0
+                    size = graphics.DrawText(offscreen_canvas, ligne_current.font, ligne_current.y+offset, ligne_current.x , ligne_current.color, texteScr)
+                elif ligne_current.defil == 2:
+                    if ligne_current.texte != ligne_current.strCurrent:
+                        ligne_current.strAff=ligne_current.texte
+                        ligne_current.strCurrent=ligne_current.texte
+                    ligne_current.strAff=self.defilement(ligne_current.strAff)
+                    size = graphics.DrawText(offscreen_canvas, ligne_current.font, ligne_current.y, ligne_current.x , ligne_current.color, ligne_current.strAff[0:7])
 
+                #     len = graphics.DrawText(offscreen_canvas, font, ligne_current.y, ligne_current.x+offset , ligne_current.color, ligne_current.texte)
+            time.sleep(0.4)
             offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
     def clear(self):
@@ -100,15 +124,16 @@ class ModuleEcran (threading.Thread):
         #Création de l'écran
         self.scrbus = Ecran("Bus",1,True)
         self.scrbus.addLigne(Ligne("",7,0,0,color1))#Titre
+        self.scrbus.ligne[0].setAlign(1)
         self.scrbus.addLigne(Ligne("",14,0,0,color2))#ligne
         self.scrbus.addLigne(Ligne("",14,12,0,color2))#Destination
         self.scrbus.addLigne(Ligne("",14,49,0,color2))#Temps
-        self.scrbus.addLigne(Ligne("",21,0,0,color2))
-        self.scrbus.addLigne(Ligne("",21,12,0,color2))
-        self.scrbus.addLigne(Ligne("",21,49,0,color2))
-        self.scrbus.addLigne(Ligne("",29,0,0,color2))
-        self.scrbus.addLigne(Ligne("",29,12,0,color2))
-        self.scrbus.addLigne(Ligne("",29,49,0,color2))
+        self.scrbus.addLigne(Ligne("",22,0,0,color2))
+        self.scrbus.addLigne(Ligne("",22,12,0,color2))
+        self.scrbus.addLigne(Ligne("",22,49,0,color2))
+        self.scrbus.addLigne(Ligne("",30,0,0,color2))
+        self.scrbus.addLigne(Ligne("",30,12,0,color2))
+        self.scrbus.addLigne(Ligne("",30,49,0,color2))
 
         #Création de l'écran Bienvenu
         self.scrWelcome = Ecran("IP",10,False)
@@ -133,7 +158,7 @@ class ModuleEcran (threading.Thread):
         #Affichage sur l'écran
         self.mngAffichage.updateAff(self.scrWelcome) ################################
         # self.printScr(self.scrWelcome) ################################
-        time.sleep(5)
+        time.sleep(2)
         #Thread
         threading.Thread.__init__(self)
 
@@ -202,12 +227,17 @@ class ModuleEcran (threading.Thread):
                 for idx in range(0,3):
                     if len(pasAff) > idx:
                         self.scrbus.ligne[1+(idx*3)].texte=str(pasAff[idx]["ligne"])[0:2]
-                        self.scrbus.ligne[2+(idx*3)].texte=str(pasAff[idx]["terminus"])[0:7]
+                        self.scrbus.ligne[2+(idx*3)].texte=str(pasAff[idx]["terminus"])
+                        if len(pasAff[idx]["terminus"]) > 7:
+                            self.scrbus.ligne[2+(idx*3)].texte+=" "
+                            self.scrbus.ligne[2+(idx*3)].defil=2
+                        else:
+                            self.scrbus.ligne[2+(idx*3)].defil=0
                         self.scrbus.ligne[3+(idx*3)].texte=self.writeTime(tisp,float(pasAff[idx]["temps"]))[0:3]
                     else:
-                        self.scrbus.ligne[1+(idx*3)].texte=""
-                        self.scrbus.ligne[2+(idx*3)].texte=""
-                        self.scrbus.ligne[3+(idx*3)].texte=""
+                        self.scrbus.ligne[1+(idx*3)].texte="  "
+                        self.scrbus.ligne[2+(idx*3)].texte="  "
+                        self.scrbus.ligne[3+(idx*3)].texte="  "
 
                 if len(pasAff) == 0:
                     self.scrbus.ligne[1].texte="Pas de bus"
