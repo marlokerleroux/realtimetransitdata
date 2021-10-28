@@ -21,7 +21,7 @@
       <div class="modal-body p-5 pt-0">
       <div id="val-act" class="alert alert-info" role="alert">
       <?php
-        $strJsonFileContents = file_get_contents("data/parameters.json");
+        $strJsonFileContents = file_get_contents("/opt/projet/parameters.json");
         $array = json_decode($strJsonFileContents);
         $result = $array->bus_stop;
         echo "Arrêt enregistré : ";
