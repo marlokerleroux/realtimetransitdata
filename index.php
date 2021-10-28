@@ -19,7 +19,17 @@
       </div>
 
       <div class="modal-body p-5 pt-0">
-      <div id="val-act" class="alert alert-info" role="alert"></div>
+      <div id="val-act" class="alert alert-info" role="alert"><?php
+        $strJsonFileContents = file_get_contents("data/parameters.json");
+        $array = json_decode($strJsonFileContents);
+        $result = $array->bus_stop;
+        echo "Arrêt enregistré : ";
+        echo $result;
+        $result = $array->city;
+        echo " - Ville : ";
+        echo $result;
+      ?>
+      </div>
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
           <div class="form-floating mb-3">
             <select id="ville" name="ville" class="form-control">
@@ -57,5 +67,7 @@
       fclose($file);
   } 
    ?>
+
+  
 
 </html>
