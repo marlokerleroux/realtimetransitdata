@@ -54,8 +54,3 @@ $(document).ready(function () {
 
     $('#valider').attr('disabled', 'disabled');
 });
-
-$.getJSON( "/opt/projet/parameters.json", function(param) {
-    var val = $("<div></div>").text("Arrêt enregistré : "+param.bus_stop+" - Ville : "+param.city);
-    $("#val-act").html(val);
-});
