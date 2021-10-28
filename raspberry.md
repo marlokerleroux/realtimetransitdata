@@ -96,3 +96,9 @@ cat ./verif_apache.html
 7. Installer PHP
 ```
 sudo apt install php php-mbstring
+```
+8. Rajouter des droits d'écriture pour tous les utilisateurs sur parameters.json
+```
+chmod a+x /opt/projet/parameters.json
+```
+
