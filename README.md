@@ -68,7 +68,7 @@ ETAPES NECESSAIRES POUR EXECUTER LE PROJET
 
 1. Cloner le projet à l'aide de l'adresse suivante :
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://web.isen-ouest.fr/gitlab/mkerl222/projet-python.git
    ```
 2. Installer les librairies python nécéssaires 
    ```sh
