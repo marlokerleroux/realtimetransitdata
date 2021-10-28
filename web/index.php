@@ -43,7 +43,7 @@
 <?php
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $file = fopen("data/parameters.json", "w");
+    $file = fopen("/opt/projet/parameters.json", "w");
       $city = $_POST['ville'];
       $bus_stop = $_POST['arret'];
 
