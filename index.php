@@ -19,7 +19,8 @@
       </div>
 
       <div class="modal-body p-5 pt-0">
-      <div id="val-act" class="alert alert-info" role="alert"><?php
+      <div id="val-act" class="alert alert-info" role="alert">
+      <?php
         $strJsonFileContents = file_get_contents("data/parameters.json");
         $array = json_decode($strJsonFileContents);
         $result = $array->bus_stop;
@@ -62,9 +63,8 @@
             \"bus_stop\":\"". $bus_stop."\"\n
          }";
       $fwrite = fwrite($file, $string_to_put_into);
-
-
       fclose($file);
+      header("Refresh:0");
   } 
    ?>
 
