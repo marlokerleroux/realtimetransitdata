@@ -16,6 +16,10 @@ class Ligne:
         self.y=y #col
         self.align=align
         self.texte=texte
+        self.font=graphics.Font()
+        self.font.LoadFont("/opt/projet/fonts/5x8.bdf")
+    def changeFont(self,str):
+        self.font.LoadFont(str)
 
 class Ecran:
     "Regroupe les paramètres pour un écran et de ses lignes"
@@ -43,18 +47,17 @@ class RunText(SampleBase):
 
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
-        font = graphics.Font()
-        font.LoadFont("/opt/projet/fonts/5x8.bdf")
-        textColor = graphics.Color(250, 90, 205)
+        # font = graphics.Font()
+        # font.LoadFont("/opt/projet/fonts/5x8.bdf")
 
         while True:
             offscreen_canvas.Clear()
             for ligne_current in self.ligne:
                 # if lig_current.align == 0:
-                len = graphics.DrawText(offscreen_canvas, font, ligne_current.y, ligne_current.x , ligne_current.color, ligne_current.texte)
+                texteScr=ligne_current.texte[0:8]
+                len = graphics.DrawText(offscreen_canvas, ligne_current.font, ligne_current.y, ligne_current.x , ligne_current.color, texteScr)
                 # if lig_current.defil == 1:
                 #     len = graphics.DrawText(offscreen_canvas, font, ligne_current.y, ligne_current.x+offset , ligne_current.color, ligne_current.texte)
-                void drawPixel(uint16_t x, uint16_t y, uint16_t color);
 
             offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
@@ -108,6 +111,7 @@ class ModuleEcran (threading.Thread):
         self.scrWelcome.addLigne(Ligne(self.getIp(),14,0,0,color2))
         self.scrWelcome.addLigne(Ligne("v 0.5.2",21,0,0,color2))
         self.scrWelcome.addLigne(Ligne("SVNFTg==",29,0,0,color2))
+        self.scrWelcome.ligne[1].changeFont("/opt/projet/fonts/4x6.bdf")
 
         #Création de l'écran ERROR
         self.scrError = Ecran("Error",10,False)
@@ -117,14 +121,14 @@ class ModuleEcran (threading.Thread):
         #Création de l'écran Attente Config
         self.scrWait = Ecran("Wait",10,False)
         self.scrWait.addLigne(Ligne("Wait Data",7,0,0,color2))
-        self.scrWait.addLigne(Ligne("IP:",14,0,0,color2))
-        self.scrWait.addLigne(Ligne("null ",21,0,0,color2))
-        self.scrWait.addLigne(Ligne("$ ",29,0,0,color2))
+        self.scrWait.addLigne(Ligne("",14,0,0,color2))
+        self.scrWait.addLigne(Ligne("",21,0,0,color2))
+        self.scrWait.addLigne(Ligne("",29,0,0,color2))
 
         #Affichage sur l'écran
         self.mngAffichage.updateAff(self.scrWelcome) ################################
         # self.printScr(self.scrWelcome) ################################
-        time.sleep(0.5)
+        time.sleep(5)
         #Thread
         threading.Thread.__init__(self)
 
@@ -175,9 +179,9 @@ class ModuleEcran (threading.Thread):
             tisp = time.time()
 
             if self.lastData+3600 < tisp: # si les données sont trop ancien (plus de communication) 1h
-                self.scrWait.ligne[2].texte=self.getIp()
+                #self.scrWait.ligne[2].texte=self.getIp()
                 # self.printScr(self.scrWait)################################
-                self.mngAffichage.updateAff(self.scrWait) )################################
+                self.mngAffichage.updateAff(self.scrWait) ################################
             else:
                 pasAff = []
                 for pas in self.dataAPI:
@@ -189,9 +193,6 @@ class ModuleEcran (threading.Thread):
 
                 for idx in range(0,3):
                     if len(pasAff) > idx:
-                        # self.scrbus.ligne[1+(idx*3)].texte="test"
-                        # self.scrbus.ligne[2+(idx*3)].texte="test"
-                        # self.scrbus.ligne[3+(idx*3)].texte="test"
                         self.scrbus.ligne[1+(idx*3)].texte=str(pasAff[idx]["ligne"])
                         self.scrbus.ligne[2+(idx*3)].texte=str(pasAff[idx]["terminus"])
                         self.scrbus.ligne[3+(idx*3)].texte=self.writeTime(tisp,float(pasAff[idx]["temps"]))
@@ -204,6 +205,6 @@ class ModuleEcran (threading.Thread):
                     self.scrbus.ligne[1].texte="Pas de bus"
 
                 # self.printScr(self.scrbus)################################
-                self.mngAffichage.updateAff(self.scrbus) )################################
+                self.mngAffichage.updateAff(self.scrbus)################################
             print("refresh")
             time.sleep(5)
