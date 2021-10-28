@@ -239,11 +239,11 @@ def process(city, bus_stop):
 if __name__ == '__main__':
     scr = ModuleEcran(1)
     scr.start()
-    scr.conf("################")
     while 1:
         wait_time = 60.0
         city = get_parameters()[0]
         bus_stop = get_parameters()[1]
+        scr.conf(city)
         time.sleep(2.0)
         try:
             data = process(city, bus_stop)
