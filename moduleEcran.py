@@ -207,24 +207,3 @@ class ModuleEcran (threading.Thread):
                 self.mngAffichage.updateAff(self.scrbus) )################################
             print("refresh")
             time.sleep(5)
-
-
-
-
-# Main function
-if __name__ == "__main__":
-    dataSimu=[
-{'ligne': '05', 'terminus': 'Port de Commerce', 'temps': '1635373166.0'},
-{'ligne': '05', 'terminus': 'Provence', 'temps': '1635373036.0'},
-{'ligne': '01', 'terminus': 'Gare', 'temps': '1635382396.0'},
-{'ligne': '01', 'terminus': 'Hôpital Cavale', 'temps': '1635371271.0'}
-]
-
-    scr = ModuleEcran(1)
-    scr.start()
-    scr.conf("################")
-    while 1:
-        time.sleep(2.0)
-        scr.update(dataSimu)
-        time.sleep(28.0)
-    scr.stop()
