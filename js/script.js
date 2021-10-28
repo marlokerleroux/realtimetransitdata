@@ -56,6 +56,6 @@ $(document).ready(function () {
 });
 
 $.getJSON( "data/parameters.json", function(param) {
-    var val = $("<div></div>").text("Arrêt enregistré : "+param.city+" - "+param.bus_stop);
+    var val = $("<div></div>").text("Arrêt enregistré : "+param.bus_stop+" - Ville : "+param.city);
     $("#val-act").html(val);
 });
