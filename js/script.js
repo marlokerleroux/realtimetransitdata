@@ -11,9 +11,13 @@ $.getJSON("data/data.json", function (data) {
         }
         if ($('#ville').val() == "Caen") {
             var select = $("<select></select>").attr("id", "arret").attr("name", "arret").attr("class", "form-control");
+            var previous = null;
             select.append($("<option disabled selected value> -- Aucun -- </option>"));
             $.each(data.caen, function (index, data) {
-                select.append($("<option></option>").attr("value", data.stop_name).text(data.stop_name));
+                if (previous != data.stop_name) {
+                    select.append($("<option></option>").attr("value", data.stop_name).text(data.stop_name));
+                }
+                previous = data.stop_name;
             });
             $("#container-arrets").html(select).append("<label>Choix de l'arrêt</label>");
         }
