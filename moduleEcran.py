@@ -15,11 +15,15 @@ class Ligne:
         self.x=x #ligne
         self.y=y #col
         self.align=align
+        self.defil=0
         self.texte=texte
         self.font=graphics.Font()
         self.font.LoadFont("/opt/projet/fonts/5x8.bdf")
     def changeFont(self,str):
         self.font.LoadFont(str)
+
+    def setAlign(self,arg):
+        self.defil=arg
 
 class Ecran:
     "Regroupe les paramètres pour un écran et de ses lignes"
@@ -53,10 +57,11 @@ class RunText(SampleBase):
         while True:
             offscreen_canvas.Clear()
             for ligne_current in self.ligne:
-                # if lig_current.align == 0:
-                texteScr=ligne_current.texte[0:8]
-                len = graphics.DrawText(offscreen_canvas, ligne_current.font, ligne_current.y, ligne_current.x , ligne_current.color, texteScr)
-                # if lig_current.defil == 1:
+                if lig_current.defil == 0:
+                    texteScr=ligne_current.texte
+                    len = graphics.DrawText(offscreen_canvas, ligne_current.font, ligne_current.y, ligne_current.x , ligne_current.color, texteScr)
+                else:
+                    
                 #     len = graphics.DrawText(offscreen_canvas, font, ligne_current.y, ligne_current.x+offset , ligne_current.color, ligne_current.texte)
 
             offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
@@ -94,16 +99,16 @@ class ModuleEcran (threading.Thread):
         color3=graphics.Color(255, 255, 0)
         #Création de l'écran
         self.scrbus = Ecran("Bus",1,True)
-        self.scrbus.addLigne(Ligne("Ville Arret",7,0,0,color1))#Titre
+        self.scrbus.addLigne(Ligne("",7,0,0,color1))#Titre
         self.scrbus.addLigne(Ligne("",14,0,0,color2))#ligne
         self.scrbus.addLigne(Ligne("",14,12,0,color2))#Destination
-        self.scrbus.addLigne(Ligne("",14,50,0,color2))#Temps
+        self.scrbus.addLigne(Ligne("",14,49,0,color2))#Temps
         self.scrbus.addLigne(Ligne("",21,0,0,color2))
         self.scrbus.addLigne(Ligne("",21,12,0,color2))
-        self.scrbus.addLigne(Ligne("",21,50,0,color2))
+        self.scrbus.addLigne(Ligne("",21,49,0,color2))
         self.scrbus.addLigne(Ligne("",29,0,0,color2))
         self.scrbus.addLigne(Ligne("",29,12,0,color2))
-        self.scrbus.addLigne(Ligne("",29,50,0,color2))
+        self.scrbus.addLigne(Ligne("",29,49,0,color2))
 
         #Création de l'écran Bienvenu
         self.scrWelcome = Ecran("IP",10,False)
@@ -166,9 +171,12 @@ class ModuleEcran (threading.Thread):
             hi=str(int(h))
             mi=str(int(m))
             if h >= 1:
-                ret = hi+"h"+mi
+                ret = ">1h"
             else:
-                ret = mi+"m"
+                if m < 10:
+                    ret = "0"+mi+"m"
+                else:
+                    ret = mi+"m"
             return ret
 
     def run(self):
@@ -185,7 +193,7 @@ class ModuleEcran (threading.Thread):
             else:
                 pasAff = []
                 for pas in self.dataAPI:
-                    print("=>",pas["ligne"], pas["terminus"],pas["temps"])
+                    #print("=>",pas["ligne"], pas["terminus"],pas["temps"])
                     if len(pasAff) < 3 and float(pas["temps"]) > tisp:
                         pasAff.append(pas)
                     elif len(pasAff) >= 3:
@@ -193,9 +201,9 @@ class ModuleEcran (threading.Thread):
 
                 for idx in range(0,3):
                     if len(pasAff) > idx:
-                        self.scrbus.ligne[1+(idx*3)].texte=str(pasAff[idx]["ligne"])
-                        self.scrbus.ligne[2+(idx*3)].texte=str(pasAff[idx]["terminus"])
-                        self.scrbus.ligne[3+(idx*3)].texte=self.writeTime(tisp,float(pasAff[idx]["temps"]))
+                        self.scrbus.ligne[1+(idx*3)].texte=str(pasAff[idx]["ligne"])[0:2]
+                        self.scrbus.ligne[2+(idx*3)].texte=str(pasAff[idx]["terminus"])[0:7]
+                        self.scrbus.ligne[3+(idx*3)].texte=self.writeTime(tisp,float(pasAff[idx]["temps"]))[0:3]
                     else:
                         self.scrbus.ligne[1+(idx*3)].texte=""
                         self.scrbus.ligne[2+(idx*3)].texte=""
@@ -206,5 +214,5 @@ class ModuleEcran (threading.Thread):
 
                 # self.printScr(self.scrbus)################################
                 self.mngAffichage.updateAff(self.scrbus)################################
-            print("refresh")
+            #print("refresh")
             time.sleep(5)
