@@ -55,7 +55,6 @@ CECI EST UN EXEMPLE A MODIFIER !
 
 CECI EST UN EXEMPLE A MODIFIER !
 
-This is an example of how to list things you need to use the software and how to install them.
 * urllib
   ```sh
   pip install urllib
@@ -65,18 +64,19 @@ This is an example of how to list things you need to use the software and how to
   pip install pytz
 ### Installation
 
-CECI EST UN EXEMPLE A MODIFIER !
+ETAPES NECESSAIRES POUR EXECUTER LE PROJET
 
 1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+2. Cloner le projet à l'aide de l'adresse suivante :
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
+3. Installer les librairies python nécéssaires 
+  ```sh
+  pip install urllib
+  pip install pytz
+  ```
+4. Ajouter suite des instructions .......
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```
