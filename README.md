@@ -1,4 +1,4 @@
-# Projet Python
+# Realtime Transit Data
 
 [![Contributors][contributors-shield]][contributors-url]
 
@@ -20,7 +20,7 @@ disposition du public **des informations et des jeux de données** liés à leur
 concrétisation fréquente de cette démarche passe par la **mise en place d'API** (interfaces de programmation
 applicatives) interrogeables par le grand public.
 
-Dans ce projet, il est demandé de s'intéresser aux **données temps réel** générées par les sociétés en charge
+Dans ce projet, nous nous interessons aux **données temps réel** générées par les sociétés en charge
 des transports en commun pour les ensembles urbains dans lesquels les sites d'**Yncréa Ouest** sont implantés (à
 savoir : *Brest*, *Caen*, *Nantes* et *Rennes*). Le but du projet est de créer une solution permettant de récupérer des
 données, de les traiter, puis de procéder à une phase d'affichage. 
