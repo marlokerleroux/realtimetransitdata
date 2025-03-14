@@ -1,6 +1,7 @@
 # Realtime Transit Data
 
 Conception d'un afficheur LED permettant la visualisation en temps réel des données de réseaux de transports en commun de 4 communes : Brest, Caen, Nantes, Rennes.
+Projet réalisé en équipe dans le cadre d'un projet d'études à l'ISEN Brest.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
