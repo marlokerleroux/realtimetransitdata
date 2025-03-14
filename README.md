@@ -65,10 +65,7 @@ Les liens suivants renvoient vers des pages de description des API :
 
 ETAPES NECESSAIRES POUR EXECUTER LE PROJET
 
-1. Cloner le projet à l'aide de l'adresse suivante :
-   ```sh
-   git clone https://web.isen-ouest.fr/gitlab/mkerl222/projet-python.git
-   ```
+1. Cloner le projet
 2. Installer les librairies python nécéssaires 
    ```sh
    pip install urllib
